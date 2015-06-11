@@ -87,35 +87,37 @@ class Rover
 
 end
 
-
+def get_starting_position
+  starting_position = gets.chomp
+  starting_position_x = starting_position.split[0].to_i
+  if starting_position_x > $plateau_width
+    starting_position_x = $plateau_width
+  elsif starting_position_x < 0
+    starting_position_x = 0
+  end
+  starting_position_y = starting_position.split[1].to_i
+  if starting_position_y > $plateau_height
+    starting_position_y = $plateau_height
+  elsif starting_position_y < 0
+    starting_position_y = 0
+  end
+  starting_position_direction = starting_position.split(" ")[2]
+  [starting_position_x, starting_position_y, starting_position_direction]
+end
 
 puts "Please input the plateau width and plateau height in the format X Y, where (x,y) is the upper-right coordinates of the plateau."
 $plateau = gets.chomp
-$plateau_width = $plateau.split(" ")[0].to_i
-$plateau_height = $plateau.split(" ")[1].to_i
+$plateau_width = $plateau.split[0].to_i
+$plateau_height = $plateau.split[1].to_i
 puts "Your plateau has a width of #{$plateau_width} and a height of #{$plateau_height}"
 
+
+
 # Get starting position for Rover 1
-
 puts "Please input Rover 1's starting position in the format X Y Direction (example 0 0 N) "
-starting_position = gets.chomp
-starting_position_x = starting_position.split(" ")[0].to_i
-if starting_position_x > $plateau_width
-  starting_position_x = $plateau_width
-elsif starting_position_x < 0
-  starting_position_x = 0
-end
-starting_position_y = starting_position.split(" ")[1].to_i
-if starting_position_y > $plateau_height
-  starting_position_y = $plateau_height
-elsif starting_position_y < 0
-  starting_position_y = 0
-end
-starting_position_direction = starting_position.split(" ")[2]
-
 # Create Rover 1
-
-rover1 = Rover.new(starting_position_x,starting_position_y,starting_position_direction, "Spirit Rover")
+rover1_position = get_starting_position
+rover1 = Rover.new(rover1_position[0],rover1_position[1],rover1_position[2], "Spirit Rover")
 puts rover1
 
 # Get and execute moves for Rover 1
