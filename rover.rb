@@ -5,7 +5,8 @@ $plateau_height = 10
 class Rover
 
   attr_accessor :x, :y, :direction
-  def initialize(x, y, direction = "N")
+  def initialize(x, y, direction = "N", name = "John Doe Rover")
+
     @x = x
     @y = y
     @direction_options = ["N", "E", "S", "W"]
@@ -16,6 +17,7 @@ class Rover
     else
       @direction = "N" # Default to North
     end
+    @name = name
   end
 
   def to_s
@@ -26,23 +28,25 @@ class Rover
     print "Your starting position is:"
     print self
     print "\n"
-    puts "You have requested the following moves: #{inputstring}"
+    puts "You have requested the following moves for #{@name}: #{inputstring}"
     inputstring.each_char { |inputchar|
       read_instruction(inputchar)
     }
   end
 
   def read_instruction(instruction)
-    puts "Executing move #{instruction}"
+    print "Executing move #{instruction}"
     case instruction
     when "M"
+      print " (Move)\n"
       move
       puts self
     when "L", "R"
+      print " (Turn)\n"
       turn(instruction)
       puts self
     else
-      puts "Your instruction #{instruction} is not valid.  Please enter L, R, or M."
+      puts "\nYour instruction #{instruction} is not valid.  Please enter L, R, or M."
     end
   end
 
@@ -91,6 +95,8 @@ $plateau_width = $plateau.split(" ")[0].to_i
 $plateau_height = $plateau.split(" ")[1].to_i
 puts "Your plateau has a width of #{$plateau_width} and a height of #{$plateau_height}"
 
+# Get starting position for Rover 1
+
 puts "Please input Rover 1's starting position in the format X Y Direction (example 0 0 N) "
 starting_position = gets.chomp
 starting_position_x = starting_position.split(" ")[0].to_i
@@ -107,10 +113,15 @@ elsif starting_position_y < 0
 end
 starting_position_direction = starting_position.split(" ")[2]
 
-rover1 = Rover.new(starting_position_x,starting_position_y,starting_position_direction)
+# Create Rover 1
+
+rover1 = Rover.new(starting_position_x,starting_position_y,starting_position_direction, "Spirit Rover")
 puts rover1
 
-rover1.request_move("MMLMRMLMMMX")
+# Get and execute moves for Rover 1
+puts "Please enter your moves for Rover 1. Use M, L, and R in format MLRMLRMM."
+rover_moves = gets.chomp
+rover1.request_move(rover_moves)
 
 #TESTING
 # 4.times do
