@@ -32,4 +32,4 @@ instructor_1.teach
 # student_1.teach
 # Calling the teach method on the student doesn't work because although it shares the
 # parent class Person with Instructor, Instructor's teach method is outside its scope
-# as it's not in the parent.
+# as it's not in the parent
