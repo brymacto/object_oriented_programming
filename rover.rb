@@ -46,7 +46,7 @@ class Rover
       turn(instruction)
       puts self
     else
-      puts "\nYour instruction #{instruction} is not valid.  Please enter L, R, or M."
+      puts "\nYour instruction #{instruction} is not valid."
     end
   end
 
@@ -111,8 +111,6 @@ $plateau_width = $plateau.split[0].to_i
 $plateau_height = $plateau.split[1].to_i
 puts "Your plateau has a width of #{$plateau_width} and a height of #{$plateau_height}"
 
-
-
 # Get starting position for Rover 1
 puts "Please input Rover 1's starting position in the format X Y Direction (example 0 0 N) "
 # Create Rover 1
@@ -125,22 +123,19 @@ puts "Please enter your moves for Rover 1. Use M, L, and R in format MLRMLRMM."
 rover_moves = gets.chomp
 rover1.request_move(rover_moves)
 
-#TESTING
-# 4.times do
-#   rover.turn("L")
-#   20.times do
-#     rover.move
-#     puts rover
-#   end
-# end
+
+# Get starting position for Rover 2
+puts "Please input Rover 2's starting position in the format X Y Direction (example 0 0 N) "
+# Create Rover 1
+rover2_position = get_starting_position
+rover2 = Rover.new(rover2_position[0],rover2_position[1],rover2_position[2], "Opportunity Rover")
+puts rover2
+
+# Get and execute moves for Rover 1
+puts "Please enter your moves for Rover 2. Use M, L, and R in format MLRMLRMM."
+rover_moves = gets.chomp
+rover2.request_move(rover_moves)
 
 
 
-
-
-
-
-# inputstring.each_character {|x|  }
-#
-# array.rotate
-# rotates array to help you figure out what direction it's facing
+# TO DO: Rover 1 and Rover 2 have some repetitive code... to be refactored.
