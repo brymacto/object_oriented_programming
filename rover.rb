@@ -3,7 +3,7 @@ $plateau_height = 10
 class Rover
 
   attr_accessor :x, :y, :direction
-  def initialize(x, y, direction = "S")
+  def initialize(x, y, direction = "N")
     @x = x
     @y = y
     @direction_options = ["N", "E", "S", "W"]
@@ -13,16 +13,26 @@ class Rover
   def to_s
     "Position: (#{@x}, #{@y}), Direction: #{@direction}"
   end
-  def read_input
 
+  def request_move(inputstring)
+    print "Your starting position is:"
+    print self
+    print "\n"
+    puts "You have requested the following moves: #{inputstring}"
+    inputstring.each_char { |inputchar|
+      read_instruction(inputchar)
+    }
   end
 
   def read_instruction(instruction)
+    puts "Executing move #{instruction}"
     case instruction
     when "M"
       move
+      puts self
     when "L", "R"
       turn(instruction)
+      puts self
     else
       puts "Your instruction #{instruction} is not valid.  Please enter L, R, or M."
     end
@@ -67,14 +77,16 @@ end
 
 rover = Rover.new(0,0)
 
+rover.request_move("MMLMRMLMMMX")
+
 #TESTING
-4.times do
-  rover.turn("L")
-  20.times do
-    rover.move
-    puts rover
-  end
-end
+# 4.times do
+#   rover.turn("L")
+#   20.times do
+#     rover.move
+#     puts rover
+#   end
+# end
 
 
 
