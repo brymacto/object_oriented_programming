@@ -1,5 +1,7 @@
+#set default plateau
 $plateau_width = 10
 $plateau_height = 10
+
 class Rover
 
   attr_accessor :x, :y, :direction
@@ -76,6 +78,14 @@ class Rover
 end
 
 rover = Rover.new(0,0)
+
+puts "Please input the plateau width and plateau height in the format X Y, where (x,y) is the upper-right coordinates of the plateau."
+$plateau = gets.chomp
+
+$plateau_width = $plateau.split(" ")[0].to_i
+$plateau_height = $plateau.split(" ")[1].to_i
+puts $plateau_width
+puts $plateau_height
 
 rover.request_move("MMLMRMLMMMX")
 
