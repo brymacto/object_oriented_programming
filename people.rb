@@ -24,3 +24,6 @@ end
 
 instructor_1 = Instructor.new("Chris")
 instructor_1.greeting
+
+student_1 = Student.new("Cristina")
+student_1.greeting
