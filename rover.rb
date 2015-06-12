@@ -131,7 +131,7 @@ rover2_position = get_starting_position
 rover2 = Rover.new(rover2_position[0],rover2_position[1],rover2_position[2], "Opportunity Rover")
 puts rover2
 
-# Get and execute moves for Rover 1
+# Get and execute moves for Rover 2
 puts "Please enter your moves for Rover 2. Use M, L, and R in format MLRMLRMM."
 rover_moves = gets.chomp
 rover2.request_move(rover_moves)
