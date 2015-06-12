@@ -1,5 +1,14 @@
 
 
+class Basket
+  def initialize(inputs)
+    @products = Array.new
+    inputs.each do |input|
+      # puts inputs.index[input]
+      @products << scan(input)
+    end
+  end
+
   def scan(item)
     item_elements = item.split
     price = item_elements.last
@@ -8,7 +17,7 @@
     Product.new(quantity, desc, price)
   end
 
-
+end
 
 class Product
   def initialize(quantity, desc, price)
@@ -38,10 +47,12 @@ class Product_Exempt < Product
   end
 end
 
-puts "Please enter your shopping items in the format [qty] [item] at [price]"
-puts "Example: 1 book at 12.49"
-scan("1 book at 12.49")
-scan("1 music CD at 14.99")
+basket1 = Basket.new(["1 book at 12.49", "1 music CD at 14.99", "1 chocolate bar at 0.85"])
+
+
+# puts "Example: 1 book at 12.49"
+# scan("1 book at 12.49")
+# scan("1 music CD at 14.99")
 
 
 # test = Product_Exempt.new(1,"apples",2.00 )
