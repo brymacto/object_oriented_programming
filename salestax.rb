@@ -17,10 +17,9 @@ class Basket
   end
 
   def checkout
+    puts "***************************"
     @products.each do |product|
-      puts "#{product.quantity} #{product.desc}: #{product.price} "
-
-
+      puts "#{product.quantity} #{product.desc}: #{product.total} "
     end
   end
 
@@ -51,12 +50,12 @@ class Product
   end
 
   def total
-    if @product_details[:desc].downcase.index("books")
+    if ( @product_details[:desc].downcase.index("book") || @product_details[:desc].downcase.index("chocolate") || @product_details[:desc].downcase.index("pills"))
       @tax_rate = 0.00
     end
     @taxes = @product_details[:price].to_f * (@tax_rate + @duty_rate)
-    @total = @product_details[:price] + @taxes
-    @total
+    @total = @product_details[:price].to_f + @taxes
+    @total.round(2)
 
   end
 
@@ -79,6 +78,12 @@ end
 
 basket1 = Basket.new(["1 book at 12.49", "1 music CD at 14.99", "1 chocolate bar at 0.85"])
 basket1.checkout
+
+basket2 = Basket.new(["1 imported box of chocolates at 10.00", "1 imported bottle of perfume at 47.50"])
+basket2.checkout
+
+basket3 = Basket.new(["1 imported bottle of perfume at 27.99", "1 bottle of perfume at 18.99", "1 packet of headache pills at 9.75", "1 box of imported chocolates at 11.25"])
+basket3.checkout
 
 
 # puts "Example: 1 book at 12.49"
